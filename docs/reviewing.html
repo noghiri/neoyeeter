@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+    Content-Security-Policy. It has to stay the first thing after the charset:
+    a policy in a meta tag doesn't cover anything that comes before it. Only
+    this site's stylesheet, Google's font CSS and font files are allowed in,
+    and only the scripts whose SHA-256 hashes are listed. Nothing may be
+    fetched, framed or submitted. After editing any inline script (yes, even
+    a comment inside one), run tools/csp_hash.py --write, or the browser will
+    refuse that script, the way the Founder refuses kibble.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-+E0vlhwhcc+4lgCEFqmfBMLIy67p5ojkmWdu0BogQ38='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <title>Loading Neoyeeter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- After five seconds the browser moves on to a fresh ban. A meta refresh, not script, so it works with JavaScript off. -->
+  <meta http-equiv="refresh" content="5; url=yeeted.html">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html">Neoyeeter</a>
+      <a href="about.html">About</a>
+      <a class="login" href="reviewing.html" aria-current="page">Log in</a>
+    </nav>
+  </header>
+  <main class="page loading">
+    <div class="spinner" aria-hidden="true"></div>
+    <p class="status" id="status" role="status">Engaging forward-looking review...</p>
+    <p class="late">This usually takes a few moments</p>
+  </main>
+  <footer class="site-footer">
+    <p>dot. dot. dot.</p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="guidelines.html">Community Guidelines</a></p>
+  </footer>
+  <script>
+    // Pick a status line at random. The first one is in the HTML as the
+    // no-JavaScript default. None of them describe anything that is
+    // actually happening, which the Founder describes as "industry standard".
+    var lines = [
+      "Engaging forward-looking review...",
+      "Verifying your identity...",
+      "Locating your account...",
+      "Cross-referencing moderation history...",
+      "Ingesting Community Guidelines...",
+      "Weighing the evidence...",
+      "Escalating to a human reviewer...",
+      "Homologizing moderation engine...",
+      "Checking for ban evasion...",
+      "Aligning stakeholders...",
+      "Reticulating splines...",
+      "Standing by operator...",
+      "Achieving moderation consensus...",
+      "Locating decision vector..."
+    ];
+    document.getElementById("status").textContent = lines[Math.floor(Math.random() * lines.length)];
+  </script>
+</body>
+</html>

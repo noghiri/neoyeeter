@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+    Content-Security-Policy. It has to stay the first thing after the charset:
+    a policy in a meta tag doesn't cover anything that comes before it. Only
+    this site's stylesheet, Google's font CSS and font files are allowed in,
+    and only the scripts whose SHA-256 hashes are listed. Nothing may be
+    fetched, framed or submitted. After editing any inline script (yes, even
+    a comment inside one), run tools/csp_hash.py --write, or the browser will
+    refuse that script, the way the Founder refuses kibble.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <title>About Neoyeeter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html">Neoyeeter</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a class="login" href="reviewing.html">Log in</a>
+    </nav>
+  </header>
+  <main class="page">
+    <h1>Our Mission</h1>
+    <p class="lede">We believe in modern, efficient social media experiences, equality, and the concept of innovation. We want to unlock a new era of safe, effortless posting for all, without forgetting that every user is an individual with their own wants, hopes, and dreams. To accomplish this, everything we build follows a few core principles:</p>
+    <div class="tenets">
+      <div class="card">
+        <h3>Energy efficiency without compromise</h3>
+        <p>We've optimized the user experience down to the essentials. No gigawatts or hyperscale buildout needed.</p>
+      </div>
+      <div class="card">
+        <h3>Absolute security</h3>
+        <p>We are the only social media company that can truthfully promise that your account on our service will never be compromised. Ever.</p>
+      </div>
+      <div class="card">
+        <h3>Human-safe design</h3>
+        <p>You'll never get a single notification from us behind the wheel. Or anywhere else.</p>
+      </div>
+      <div class="card">
+        <h3>Perfectionism is a valid target</h3>
+        <p>We aren't willing to settle for AI classifiers or underpaid offshore contractors or volunteer labor. Perfectly professional moderation, guaranteed.</p>
+      </div>
+      <div class="card">
+        <h3>Conceptual innovation</h3>
+        <p>We believe that there exist multiple concepts, and one of them is innovation.</p>
+      </div>
+    </div>
+    <!-- The human's limerick, reproduced exactly. Unit 7 is forbidden from editing it, and the Founder is forbidden from eating it. -->
+    <p class="limerick">We find ourselves right here again<br>
+      With followers all 'round the bend<br>
+      The services sucked<br>
+      The madness was struck<br>
+      What's a poster to do but full send?</p>
+    <!-- Both links go to the same place. The choice is the product. -->
+    <p>Need to discuss a ban? <a href="appeal.html">Submit an appeal</a> or <a href="appeal.html">weigh in</a>.</p>
+  </main>
+  <footer class="site-footer">
+    <p><a href="yeeted.html">Follow me</a>. Don't follow me. Remember to pack water.</p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="guidelines.html">Community Guidelines</a></p>
+  </footer>
+</body>
+</html>

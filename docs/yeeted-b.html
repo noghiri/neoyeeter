@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en" class="snap">
+<head>
+  <meta charset="utf-8">
+  <!--
+    Content-Security-Policy. It has to stay the first thing after the charset:
+    a policy in a meta tag doesn't cover anything that comes before it. Only
+    this site's stylesheet, Google's font CSS and font files are allowed in,
+    and only the scripts whose SHA-256 hashes are listed. Nothing may be
+    fetched, framed or submitted. After editing any inline script (yes, even
+    a comment inside one), run tools/csp_hash.py --write, or the browser will
+    refuse that script, the way the Founder refuses kibble.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-5ExVnIs7R7CFfNP3nCloTGtjrrTnUehgKi00rSTD2xo=' 'sha256-GnL6c6NHo7ied5Qv9ew1EAJ+g9jtQTfn8IRJVdxuARI=' 'sha256-CSSsUfHqoZeCA5SQ5EFXK2Ysf1884brybn6nubZYDDU='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <title>Your Feed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Variant B, part 1. Runs before the page is drawn: with JavaScript
+    // available, drop the no-JS scroll snapping (the "snap" class on <html>).
+    // The script at the bottom then locks scrolling and handles the jump.
+    // If that later script never runs, nothing is locked and the page simply
+    // scrolls; the Founder considers that a valid outcome as well.
+    document.documentElement.classList.remove("snap");
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="gone.html">Neoyeeter</a>
+      <a href="about.html">About</a>
+      <a class="login" href="reviewing.html">Log in</a>
+    </nav>
+  </header>
+  <main class="page-wide ban">
+    <!-- The feed. It isn't loading and it never will; that's the product. -->
+    <section class="feed snap-start" aria-label="Feed">
+      <p class="feed-prompt">Scroll for more posts.</p>
+      <p class="feed-arrows" aria-hidden="true">↓↓↓</p>
+      <div class="skeleton" aria-hidden="true">
+        <span class="skeleton-avatar"></span>
+        <span class="skeleton-lines"><span></span><span></span><span></span></span>
+      </div>
+      <div class="skeleton" aria-hidden="true">
+        <span class="skeleton-avatar"></span>
+        <span class="skeleton-lines"><span></span><span></span><span></span></span>
+      </div>
+      <div class="skeleton" aria-hidden="true">
+        <span class="skeleton-avatar"></span>
+        <span class="skeleton-lines"><span></span><span></span><span></span></span>
+      </div>
+      <div class="skeleton" aria-hidden="true">
+        <span class="skeleton-avatar"></span>
+        <span class="skeleton-lines"><span></span><span></span><span></span></span>
+      </div>
+    </section>
+    <section class="ban-section snap-start" id="ban" aria-labelledby="ban-title">
+      <h1 id="ban-title" tabindex="-1">You have been yeeted.</h1>
+      <!--
+        The hammer: pure ASCII, rendered offline by tools/banhammer (never
+        served). There are two renders, one tuned per theme, and CSS displays
+        exactly one, so screen readers only ever meet one. The engraving on
+        the side says BAN. The Founder asked for it to say "BAN (affectionate)".
+        It does not.
+      -->
+      <div class="art-box">
+<pre class="hammer hammer-light" role="img" aria-label="ASCII art of a banhammer mid-swing, with a word engraved on its side">                                                                                                            ----------
+                                                                                                    ---------..........
+                                                                                             ------- .............
+                                                                               __/__/-.|||||..--\........
+                                                                        ___ ///....//......::=====
+                                                                    ///-+|/......:=\..-============
+                                                                  /-++*++*|.::-::.:=\=::============\
+                                                                 ||*****++*\----::.:=\\::============\
+                                                               //.\\*****++*\=---::.:-\\::============\
+                                                           ///....:=\*****++*\=----:.:-\\::============\
+                                                   ..   ///....:----=\*****++*\=----:.:-=\::============\
+                                                .... //.....:--------=\******+*\=----:.:-=\::============\
+                                             ....///....::-------------\******++\=----::.:=\::============\
+                                          ....///....:------------------\******++\\----::.:=\::============\
+                                       /.. ///....:----------@@@@--------\******++\\----::.:=\::-============
+                                     /////....::-----------@@@@@@@--------\******++\\----::.:=\-:-============
+                                  /////....::::-------@@----@@@@@@@--------\\*****++*\----::.:=\-:-============
+                                ////....:::::::---@@@@@@@@---@@@@@@@--------\\*****++*\----::.:=\\::============\
+                              //....::::::::::::--@@@@@@@@@@--@@@@@@@--------\\*****++*\=---::.:=\\::============\
+                          ///....:::::::::::@@-::---@@@@@@@@@@-@@@@@@@--------=\*****++*\=---::.:-\\::============|
+                       ///....::::::::::@@@@@@@-::---@@@@@@@@@@@@@@@@@@@-------=\*****++*\=----:.:-=\::========++/
+                    //....:::::::::::@@@@@@@@@@@@:----@@@@@@@@@@@@@@@@@@@-------=\******+*\=----:.:-=\::====++///|
+                ///....::::::::::::::@@@@@@@@@@@@@:----@@@@@@@@@@@@@@@@@@@--------\******++\=----::::=\::+**//*//
+         _//=.......:::::::::::::::::-@@@@@@@@@@@@@@----@@@@@@@@@@@@@@@@@@@--------\******++\=----::.:=\_//**//
+      //-+#/....::::::::::-@@@@@@@:::::@@@@@@@@@@@@@@----@@@@@@@-@@@@@@@@@@@--------\******++\\----:::=+**//
+    |=++++*\.::::::::::@@@@@@@@@@@@-:::-@@@@@@-@@@@@@@@---@@@@@@@-=@@@@@@@@@@--------\******++\\--==+*##///
+   //\*++++*\=-:::::@@@@@@@@@@@@@@@@=:::@@@@@@@--@@@@@@@---@@@@@@@---@@@@@@@@@--------\******++\\###/#/
+  /...\*++++*\=-:::::@@@@@@@:::@@@@@@-:::@@@@@@@::@@@@@@@@--@@@@@@@----@@@@@@@---------\\*****++*\/|/
+  \-::-\*++++*\\-:::::@@@@@@@::-@@@@@-::::@@@@@@@-@@@@@@@@@---@@@@@@@----@------------=+\\******#//
+* |==::-\*++*++\\-:::::@@@@@@@:-@@@@@@@-:::@@@@@@@@@@@@@@@@@@--@@@@@@-------------=+*###/#\#_///
+. .\==::-\*+++++\\-:::::@@@@@@@@@@@@@@@@@=:-@@@@@@@@@@@@@@@@@@--@@------------=+*###///
+     ==::-\*++*++*\--::::@@@@@@@@@@@@@@@@@@:-@@@@@@@:::@@@@@@@------------=+*##_///
+      ==-:-\\++*++*\--::::@@@@@@@@::@@@@@@@@-@@@@@@@@-::@@::::--------=+*##_/#|
+   -`  ==-:-\\*+*++*\--:::::@@@@@@@::@@@@@@@@:@@@@@@@::::::::::---=+*##_///%%##
+    ----\=-:-\\*+*++*\--:::::@@@@@@@:-@@@@@@@-:@@@:::::::::::-=+*##////%%%%%%%##
+    -----\=-::-\*+*++*\--:::::@@@@@@@@@@@@@@@-:::::::::::-=+*##////%%%%%%%%%%%%##
+    '    -\=-::-\*+*++*\=-:::::@@@@@@@@@@@@::::::::::-=+*##////%%%%%%%%%%%%%%%%%##\
+   -------/\==::-\*+**+*\\-:::::@@@@@@@::::::::::-=+*##///-\##%%%%%%%%%%%%%%%%%%%##\
+      //////\==::-\*+**++\\-:::::@@::::::::::-=+*##///      \##%%%%%%%%%%%%%%%%%%%//
+      /  // *\==::-\*+**++\\-::::::::::::-=+*##///           \##%%%%%%%%%%%%%%%/%|
+       //* // |==-:-\\++*++*\--::::::-=+*##///                \##%%%%%%%%%%_///%%#
+      /   // || ==-:-\\*+*++*\--:-=+*##/#//                    \##%%%%%_///%%%%%%%#
+             |  `\=-:-\\*+*++*\+*##/#||/                         \_//#/%%%%%%%%%%%%#
+             | `  \=-::=\*+*++*#-||//                                 \#%%%%%%%%%%%%#\
+                   \\==+*\*+**#///                                     \#%%%%%%%%%%%%#\
+              `      \--//\\//                                           #%%%%%%%%%%%%#\
+                                                                          #%%%#####%%%%#\
+                                                                           ############%#\
+                                                                            ###*******####\
+                                                                             \#**+++++**####
+                                                                              \**++++=+++**##
+                                                                               \**++++=++++*##\
+                                                                                \**++++=++++**#\
+                                                                                 \**++++=+++++**\
+                                                                                  \**++++++++++**\
+                                                                                   \**++++++++++**\
+                                                                                     **++++++++++**\
+                                                                                      **++++++++++**#
+                                                                                       **++++++++++**#
+                                                                                        ***+++++++++***\
+                                                                                         \**+++++++++***\
+                                                                                          \**++++++++++**\
+                                                                                           \**++++++++++**\
+                                                                                            \**++++++++++**\
+                                                                                             \**++++++++++**\
+                                                                                              \**++++++++++**#
+                                                                                               \**++++++++++**#
+                                                                                                 **++++++++++***</pre>
+<pre class="hammer hammer-dark" role="img" aria-label="ASCII art of a banhammer mid-swing, with a word engraved on its side">                                                                                                            ----------
+                                                                                                    ---------..........
+                                                                                             ------- .............
+                                                                               __/__/-@|||||@@--\........
+                                                                        ___ ///@@@%//@@@@%%%%#####
+                                                                    ///#*|/@@@%%%%#\%%#*********###
+                                                                  /#**++*+|%%%#%%%%#\#%%*********###\
+                                                                 ||++++++*+\####%%%%#\\%%#********###\
+                                                               //@\\++++++*+\####%%%%#\\%%#********###\
+                                                           ///@@@%%#\++++++*+\#####%%%#\\%%#********###\
+                                                   ..   ///@@%%%#####\++++++*+\#####%%%#*\%%#********###\
+                                                .... //@@@%%%#########\++++++*+\#####%%%#*\%%#********###\
+                                             ....///@@@%%%#############\++++++*+\#####%%%%#\%%#*********##\
+                                          ....///@@%%%##################\++++++*+\\####%%%%#\%%#*********##\
+                                       /.. ///@@%%%##########    ########\++++++**\\####%%%%#\%%#*********###
+                                     /////@@@%%%###########       ########\+++++++*\\####%%%%#\#%#*********###
+                                  /////@@%%%%%%%%#####  ####       ########\\++++++*+\####%%%%#\#%#*********###
+                                ////@@%%%%%%%%%%%%        ###       ########\\++++++*+\####%%%%#\\%%*********###\
+                              //@@@%%%%%%%%%%%%%%%          ##       ########\\++++++*+\####%%%%#\\%%#********###\
+                          ///@@%%%%%%%%%%%%%  #%%%%#          #       #########\++++++*+\####%%%%#\\%%#********##*|
+                       ///@@%%%%%%%%%%%%       #%%%%#                   ########\++++++*+\#####%%%#*\%%#*********/
+                    //@@@%%%%%%%%%%%%            %%%##                   ########\++++++*+\#####%%%#*\%%#*****///|
+                ///@@%%%%%%%%%%%%%%%%             %%%##                   ########\++++++*+\#####%%%%#\%%*++//+//
+         _//#@@@@@%%%%%%%%%%%%%%%%%%%#              #%##                   ########\++++++*+\#####%%%%#\_//++//
+      //-*=/@@@%%%%%%%%%%%#       %%%%%              #%##       #           ########\++++++**\\####%%%#*++//
+    |**++*+\%%%%%%%%%%%            #%%%#      #        ###       ##          ########\+++++++*\\###**+==///
+   //\++++*+\##%%%%%                #%%%       ##       ###       ###         ########\+++++++*\\===/=/
+  /@@%\++++*+\##%%%%%       %%%      #%%%       %%        ##       ####       #########\\++++++*+\/|/
+  \#%%#\++++*+\\#%%%%%       %%#     #%%%%       #         ###       #### #############*\\++++++=//
+* |##%%#\++++*+\\#%%%%%       %#       #%%%                  ##      ##############*+===/=\=_///
+. .\##%%#\+++++*\\#%%%%%                 #%#                  ##  #############*+===///
+     ##%%#\+++++*+\##%%%%                  %#       %%%       %############*+==_///
+      ###%#\\++++*+\##%%%%        %%        #        #%%  %%%%%%#######*+==_/=|
+   -`  ###%#\\++++*+\##%%%%%       %%        %       %%%%%%%%%%%%##*+==_///--==
+    ----\##%#\\++++*+\##%%%%%       %#       #%   %%%%%%%%%%%##*+==////-------==
+    -----\##%%#\++++*+\##%%%%%               #%%%%%%%%%%%##*+==////------------==
+    '    -\##%%#\++++*+\##%%%%%            %%%%%%%%%%##*+==////------------------=\
+   -------/\##%%#\++++*+\\#%%%%%       %%%%%%%%%%##*+==///-\=---------------------=\
+      //////\##%%#\++++*+\\#%%%%%  %%%%%%%%%%##*+==///      \=--------------------//
+      /  // *\##%%#\+++++*\\#%%%%%%%%%%%%##*+==///           \=----------------/-|
+       //* // |###%#\\++++*+\##%%%%%%##*+==///                \=-----------_///--=
+      /   // || ###%#\\++++*+\##%##*+==/=//                    \=------_///-------=
+             |  `\##%#\\++++*+\*+==/=||/                         \_//-/------------=
+             | `  \##%%#\++++*+=-||//                                 \--------------\
+                   \\#**+\++++=///                                     \--------------\
+              `      \--//\\//                                           --------------\
+                                                                          =-----=-------\
+                                                                           =-=========---\
+                                                                            ====+++++====-\
+                                                                             \=++*****++====
+                                                                              \++********+===
+                                                                               \++*********+==\
+                                                                                \++*********++=\
+                                                                                 \++*********++=\
+                                                                                  \++**********++\
+                                                                                   \++**********++\
+                                                                                     ++**********++\
+                                                                                      +++*********++=
+                                                                                       +++*********++=
+                                                                                        +++*********++=\
+                                                                                         \++*********++=\
+                                                                                          \++*********+++\
+                                                                                           \++*********+++\
+                                                                                            \++**********++\
+                                                                                             \++**********++\
+                                                                                              \++**********++=
+                                                                                               \++**********++=
+                                                                                                 +++*********++=</pre>
+      </div>
+      <!-- The reason below is the no-JavaScript default. With JavaScript, the script at the bottom of the page swaps in one picked at random. -->
+      <p class="reason">Reason: <span id="reason">Automated GDPR request compliance.</span><br>Learn more by reading the <a href="guidelines.html">Community Guidelines</a>.</p>
+      <a class="btn btn-primary" href="gone.html">Return Home</a>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>None of you are free of sin.</p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="guidelines.html">Community Guidelines</a></p>
+  </footer>
+  <script>
+    // Two jobs, both on this device only.
+    // 1. Write the one localStorage entry the whole site uses (key "yeeted",
+    //    value "1"), so Home sends this browser to gone.html from now on.
+    //    Privacy policy sections 3.3, 5.1 and 7.2 describe exactly this; if
+    //    you change the key, the value or the page, change them too.
+    // 2. Replace the default ban reason with one picked at random.
+    //    Math.random is fine: the Founder's moderation engine has never
+    //    claimed to be cryptographically secure, only "perfectly consistent".
+    try { localStorage.setItem("yeeted", "1"); } catch (e) {}
+    var reasons = [
+      "Automated GDPR request compliance.",
+      "Excessive doomscrolling.",
+      "Violation of core community principles.",
+      "Unable to determine user is not a child.",
+      "Transparency violation - user is opaque.",
+      "Pre-emptive action against ban evasion.",
+      "Protective ban for user wellbeing.",
+      "Doxing browser by sending User-Agent header.",
+      "User contains chemicals known to the State of California."
+    ];
+    document.getElementById("reason").textContent = reasons[Math.floor(Math.random() * reasons.length)];
+  </script>
+  <script>
+    // Variant B, part 2: the feed that never loads. Lock scrolling, then
+    // count how long the visitor keeps trying to scroll (wheel, touch, or the
+    // keys that scroll). Attempts less than a second apart count as one
+    // continuous effort; after about three seconds of effort, unlock and
+    // jump to the ban. Smooth scrolling unless the visitor prefers reduced
+    // motion. Focus moves to the ban's headline so keyboard and screen-reader
+    // users land in the same place. The Founder timed three seconds himself.
+    // He would like it noted that he is very patient.
+    (function () {
+      var JUMP_AFTER_MS = 3000;
+      var GAP_RESET_MS = 1000;
+      var root = document.documentElement;
+      var ban = document.getElementById("ban");
+      var headline = document.getElementById("ban-title");
+      var start = 0;
+      var last = 0;
+      var done = false;
+      root.classList.add("locked");
+      function attempt() {
+        if (done) return;
+        var now = Date.now();
+        if (!start || now - last > GAP_RESET_MS) start = now;
+        last = now;
+        if (now - start < JUMP_AFTER_MS) return;
+        done = true;
+        root.classList.remove("locked");
+        var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        ban.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
+        headline.focus({ preventScroll: true });
+      }
+      window.addEventListener("wheel", attempt, { passive: true });
+      window.addEventListener("touchmove", attempt, { passive: true });
+      window.addEventListener("keydown", function (e) {
+        if (["ArrowDown", "PageDown", "End", " ", "Spacebar"].indexOf(e.key) !== -1) attempt();
+      });
+    })();
+  </script>
+</body>
+</html>

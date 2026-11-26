@@ -1,0 +1,6 @@
+# Planning notes stay local (they explain the jokes and name people).
+copy-deck.md
+
+# Python build artefacts
+__pycache__/
+*.pyc

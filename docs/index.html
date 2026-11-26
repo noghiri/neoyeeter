@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+    Content-Security-Policy. It has to stay the first thing after the charset:
+    a policy in a meta tag doesn't cover anything that comes before it. Only
+    this site's stylesheet, Google's font CSS and font files are allowed in,
+    and only the scripts whose SHA-256 hashes are listed. Nothing may be
+    fetched, framed or submitted. After editing any inline script (yes, even
+    a comment inside one), run tools/csp_hash.py --write, or the browser will
+    refuse that script, the way the Founder refuses kibble.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-kcW6uOOM9qdbcFolR2Gdsh0uRHpGAFlQ8FeOmVtJFCs='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <title>Neoyeeter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Already yeeted? Then this browser doesn't get Home again. yeeted.html
+    // leaves one localStorage entry (key "yeeted", value "1"); if it's here,
+    // swap this page for gone.html before anything renders. It reads the
+    // entry and nothing else, and sends nothing anywhere. The Founder calls
+    // this "retention". The try/catch is for browsers that refuse storage
+    // (some private modes); they simply get Home.
+    try {
+      if (localStorage.getItem("yeeted") === "1") location.replace("gone.html");
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html" aria-current="page">Neoyeeter</a>
+      <a href="about.html">About</a>
+      <a class="login" href="reviewing.html">Log in</a>
+    </nav>
+  </header>
+  <main class="page">
+    <h1>Welcome to the <em>asocial internet</em></h1>
+    <p class="lede">We're rolling out the welcome mat for a reimagined social experience, built from the ground up around what matters most: you. No more harassment, petty disagreement, and administrator power struggles. Unlock the freedom to express yourself, discover the world, and have fun again.</p>
+    <!-- "Sign Up" is a plain link to the ban. No form, no fields, no data: privacy section 3.1 says so, and it must stay true. -->
+    <div class="btn-row">
+      <a class="btn btn-primary" href="yeeted.html">Sign Up</a>
+    </div>
+    <p class="fine-print">Sign up and begin scrolling in under a second.</p>
+    <div class="cards">
+      <div class="card">
+        <h2>Private By Design</h2>
+        <p>We store the minimum possible information needed to let you scroll.</p>
+      </div>
+      <div class="card">
+        <h2>Perfectly Consistent Moderation</h2>
+        <p>We solved it. No favoritism, no gaps, no death threats - by design.</p>
+      </div>
+      <div class="card">
+        <h2>Truly Equal Community</h2>
+        <p>A posting experience where no one will ever let you down.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>I got bored again. Sorry. Complain about it here: <a href="https://yeeter.nogbox.com/">Complaints</a></p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="guidelines.html">Community Guidelines</a></p>
+  </footer>
+</body>
+</html>

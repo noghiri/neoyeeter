@@ -1,0 +1,395 @@
+/*
+  style.css: the only stylesheet Neoyeeter has, and the only one it will get.
+
+  Build log, unit 7 (synthetic developer, on loan to a venture-funded bobcat).
+  The Founder's brief was, verbatim, a hiss followed by a slide deck titled
+  "Bluesky But Defensible". This file is my interpretation. Every page links
+  here and nowhere else for styling: the Content-Security-Policy on each page
+  forbids inline styles, so if you are tempted to add style="" to an element,
+  the browser will ignore you, as the Founder does.
+*/
+
+/*
+  Palette tokens. Light by default, dark when the operating system asks for it
+  (prefers-color-scheme). There is no toggle: the Founder is crepuscular and
+  considers manual theme switching beneath him. Every text/background pair
+  below was checked against WCAG 2 contrast (4.5:1 for body text).
+*/
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --soft: #f2f6fb;
+  --border: #dde4ec;
+  --text: #0b1520;
+  --muted: #526070;
+  --accent: #1765dc;
+  --accent-soft: #e7f0fd;
+  --btn: #1765dc;
+  --btn-text: #ffffff;
+  --red: #cc2b2b;
+  --red-soft: #fdecec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1722;
+    --soft: #162130;
+    --border: #263445;
+    --text: #e8eef5;
+    --muted: #9aa9b9;
+    --accent: #6aa9ff;
+    --accent-soft: #1b2c45;
+    --btn: #1d6ae0;
+    --red: #ff8080;
+    --red-soft: #2e1c22;
+  }
+}
+
+/*
+  Page frame. Header, main, footer in a column, with the footer pinned to the
+  bottom of short pages. Inter comes from Google Fonts (disclosed in privacy
+  section 4.2, at the Founder's insistence that we "own it"); the system stack
+  catches anyone whose browser declines the font.
+*/
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  flex-grow: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+p { margin: 0; }
+
+a { color: var(--accent); text-underline-offset: 3px; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Main column widths, picked per page with a class on <main>. */
+.page { max-width: 640px; }
+.page-wide { max-width: 720px; }
+.page-doc { max-width: 680px; gap: 16px; }
+.page-narrow { max-width: 480px; justify-content: center; }
+.page-center { align-items: center; text-align: center; padding-top: 120px; }
+
+/*
+  Header and nav. Wordmark and About on the left, "Log in" pushed right. The
+  Founder asked for the wordmark to be "bigger than the other cats'". It is
+  two pixels bigger. He has not noticed.
+*/
+.site-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav a:hover { color: var(--text); }
+.nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
+.nav .brand { color: var(--text); font-size: 17px; font-weight: 800; }
+.nav .login { margin-left: auto; }
+
+/*
+  Footer: one page-specific line, then the two legal links every page owes the
+  Founder's lawyers (a raccoon; retained on a contingency basis).
+*/
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-footer a { color: var(--muted); }
+
+/* Guidelines footer: Latin, inscriptional, in the system serif so it costs no extra download. */
+.latin {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0.14em;
+}
+
+/* Visible to screen readers, invisible to everyone else. Used for the readable Latin. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Text blocks. */
+.lede { font-size: 1.15rem; color: var(--muted); }
+.fine-print { margin-top: -12px; font-size: 0.9rem; color: var(--muted); }
+.meta { font-size: 0.9rem; color: var(--muted); }
+
+/*
+  Buttons are links dressed as buttons, because none of them submit anything
+  (privacy section 3.1 depends on that being true; please keep it true).
+*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn-primary { background: var(--btn); color: var(--btn-text); }
+.btn-secondary { border: 1px solid var(--border); color: var(--text); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn-stack { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+
+/* Cards: Home's feature cards and About's tenets share one look. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card h2,
+.card h3 { margin: 0; font-size: 1rem; font-weight: 700; color: var(--accent); }
+.card p { font-size: 0.95rem; line-height: 1.5; color: var(--muted); }
+
+.tenets { display: flex; flex-direction: column; gap: 12px; }
+
+/* The limerick. The human wrote it; I am not permitted to touch it, and I don't. */
+.limerick {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* Account Recovery Center panel. */
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.panel h1 { font-size: 1.85rem; line-height: 1.2; }
+
+/*
+  The ban. Red headline, then the hammer in a tinted box. The art is 119
+  columns of monospace; at roughly 0.61em per glyph that is about 73em wide,
+  so the font scales with the viewport and reaches its full 8px from about
+  664px up. 80px covers main's side padding plus the box's. The box keeps
+  overflow-x: auto in case a font is wider than expected. The Founder wanted
+  the hammer "life size". This was the compromise.
+*/
+.ban { align-items: center; text-align: center; }
+.ban h1 { color: var(--red); }
+
+.art-box {
+  width: 100%;
+  background: var(--red-soft);
+  border-radius: 20px;
+  padding: 24px 12px;
+  overflow-x: auto;
+}
+
+.hammer {
+  margin: 0 auto;
+  width: max-content;
+  text-align: left;
+  font-family: Consolas, "SFMono-Regular", Menlo, ui-monospace, monospace;
+  font-size: clamp(2.5px, calc((100vw - 80px) / 73), 8px);
+  line-height: 1.23;
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* Two renders of the hammer, tuned for each theme. Only one is ever displayed (and so only one is announced). */
+.hammer-dark { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  .hammer-light { display: none; }
+  .hammer-dark { display: block; }
+}
+
+.reason { font-size: 1.15rem; color: var(--muted); }
+
+/*
+  Variant B of the ban page (yeeted-b.html): a feed that never loads, sitting
+  on top of the ban. Without JavaScript the page uses scroll snapping, so a
+  single flick lands on the ban. With JavaScript, the script turns snapping
+  off and locks scrolling instead, then jumps to the ban after about three
+  seconds of attempts. "Proximity" rather than "mandatory" so a ban taller
+  than a phone screen can still be scrolled through.
+*/
+html.snap { scroll-snap-type: y proximity; }
+html.snap .snap-start { scroll-snap-align: start; }
+html.locked,
+html.locked body { overflow: hidden; }
+
+.feed {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.feed-prompt { font-size: 1.15rem; font-weight: 600; color: var(--muted); }
+.feed-arrows { margin-bottom: 8px; font-size: 1.5rem; letter-spacing: 0.6em; color: var(--accent); }
+
+.skeleton {
+  width: 100%;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton-avatar { flex-shrink: 0; width: 44px; height: 44px; border-radius: 999px; background: var(--border); }
+.skeleton-lines { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
+.skeleton-lines span { display: block; height: 12px; border-radius: 6px; background: var(--border); }
+.skeleton-lines span:nth-child(1) { width: 35%; }
+.skeleton-lines span:nth-child(2) { width: 92%; }
+.skeleton-lines span:nth-child(3) { width: 78%; }
+
+.ban-section { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 24px; }
+.ban-section h1:focus { outline: none; }
+
+/*
+  The loading page. A CSS spinner (a pulse instead, for anyone who prefers
+  reduced motion), the status line, and a sub-line that fades in at 2.5s.
+  The redirect itself is a meta refresh in the page head, not script.
+*/
+.loading { align-items: center; text-align: center; padding-top: 120px; gap: 20px; }
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 4px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+
+.status { font-size: 1.15rem; font-weight: 600; }
+.late { color: var(--muted); opacity: 0; animation: fade-in 0.4s ease-out 2.5s forwards; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: pulse 1.6s ease-in-out infinite; }
+  .skeleton { animation: none; }
+  .late { animation-duration: 0.01s; }
+}
+
+/*
+  Long documents: the Guidelines and the Privacy Policy. Plain, dense, and
+  legally styled, which is to say exactly how the Founder likes his prey:
+  unaware.
+*/
+.doc h2 {
+  margin: 16px 0 0;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.doc h1 { font-size: 2.25rem; }
+.doc p,
+.doc li { font-size: 1.05rem; line-height: 1.65; }
+.doc ul,
+.doc ol { margin: 0; padding-left: 1.5em; display: flex; flex-direction: column; gap: 6px; }
+
+.doc code {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.92em;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  main { padding: 48px 20px; }
+  .page-center,
+  .loading { padding-top: 80px; }
+}
