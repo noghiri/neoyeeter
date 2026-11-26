@@ -286,8 +286,8 @@ a { color: var(--accent); text-underline-offset: 3px; }
   The ban page (yeeted.html): a feed that never loads, sitting
   on top of the ban. Without JavaScript the page uses scroll snapping, which
   pulls the page onto the ban. With JavaScript, the script turns snapping
-  off and locks scrolling instead, then jumps to the ban after about three
-  seconds of attempts. "Proximity" rather than "mandatory" so a ban taller
+  off and locks scrolling instead, then jumps to the ban three seconds after
+  the first attempt to scroll. "Proximity" rather than "mandatory" so a ban taller
   than a phone screen can still be scrolled through.
 */
 html.snap { scroll-snap-type: y proximity; }

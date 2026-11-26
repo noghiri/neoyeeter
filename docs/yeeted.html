@@ -11,7 +11,7 @@
     including a comment inside one, run tools/csp_hash.py --write to update
     the hashes.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-OxHcC45lITPjHHnQGcKpdz7CAg5LrDFUHwANP4xYFMs=' 'sha256-GnL6c6NHo7ied5Qv9ew1EAJ+g9jtQTfn8IRJVdxuARI=' 'sha256-3L21/OlOE9ZdIVQAqXgou3wmJBUASL+Gghq9m7L1nxc='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-OxHcC45lITPjHHnQGcKpdz7CAg5LrDFUHwANP4xYFMs=' 'sha256-GnL6c6NHo7ied5Qv9ew1EAJ+g9jtQTfn8IRJVdxuARI=' 'sha256-akamER9VLTBijK6eyCNcqmbGy7sCTohl1yxI6/2/EOI='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <title>Your Feed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
@@ -235,35 +235,31 @@
     document.getElementById("reason").textContent = reasons[Math.floor(Math.random() * reasons.length)];
   </script>
   <script>
-    // Part 2 of 2: the feed that never loads. Lock scrolling, then
-    // count how long the visitor keeps trying to scroll (wheel, touch, or the
-    // keys that scroll). Attempts less than a second apart count as one
-    // continuous effort; after about three seconds of effort, unlock and
-    // jump to the ban. Smooth scrolling unless the visitor prefers reduced
-    // motion. Focus moves to the ban's headline so keyboard and screen-reader
-    // users land in the same place. The Founder timed three seconds himself.
-    // He would like it noted that he is very patient.
+    // Part 2 of 2: the feed that never loads. Lock scrolling. The first
+    // attempt to scroll (wheel, touch, or the keys that scroll) starts a
+    // three-second timer; when it runs out, unlock and jump to the ban,
+    // however much or little the visitor kept trying. Smooth scrolling unless
+    // the visitor prefers reduced motion. Focus moves to the ban's headline so
+    // keyboard and screen-reader users land in the same place. The Founder
+    // timed three seconds himself. He would like it noted that he is very
+    // patient.
     (function () {
       var JUMP_AFTER_MS = 3000;
-      var GAP_RESET_MS = 1000;
       var root = document.documentElement;
       var ban = document.getElementById("ban");
       var headline = document.getElementById("ban-title");
-      var start = 0;
-      var last = 0;
-      var done = false;
+      var started = false;
       root.classList.add("locked");
-      function attempt() {
-        if (done) return;
-        var now = Date.now();
-        if (!start || now - last > GAP_RESET_MS) start = now;
-        last = now;
-        if (now - start < JUMP_AFTER_MS) return;
-        done = true;
+      function jump() {
         root.classList.remove("locked");
         var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         ban.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
         headline.focus({ preventScroll: true });
+      }
+      function attempt() {
+        if (started) return;
+        started = true;
+        window.setTimeout(jump, JUMP_AFTER_MS);
       }
       window.addEventListener("wheel", attempt, { passive: true });
       window.addEventListener("touchmove", attempt, { passive: true });
