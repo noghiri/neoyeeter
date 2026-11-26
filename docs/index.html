@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <!--
-    Content-Security-Policy. It has to stay the first thing after the charset:
-    a policy in a meta tag doesn't cover anything that comes before it. Only
-    this site's stylesheet, Google's font CSS and font files are allowed in,
-    and only the scripts whose SHA-256 hashes are listed. Nothing may be
-    fetched, framed or submitted. After editing any inline script (yes, even
-    a comment inside one), run tools/csp_hash.py --write, or the browser will
-    refuse that script, the way the Founder refuses kibble.
+    Content-Security-Policy. Keep this as the first element after the charset:
+    a policy delivered in a meta tag does not apply to anything before it.
+    Allows this site's stylesheet, Google Fonts' CSS and font files, and only
+    the inline scripts whose SHA-256 hashes are listed. Nothing else may be
+    loaded, fetched, embedded or submitted. After editing any inline script,
+    including a comment inside one, run tools/csp_hash.py --write to update
+    the hashes.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-kcW6uOOM9qdbcFolR2Gdsh0uRHpGAFlQ8FeOmVtJFCs='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BQAKZvAUKtVyPJnVgWr+OzWX53666eQjnuNkiYpjJv8='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <title>Neoyeeter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     // Already yeeted? Then this browser doesn't get Home again. yeeted.html
     // leaves one localStorage entry (key "yeeted", value "1"); if it's here,
     // swap this page for gone.html before anything renders. It reads the
-    // entry and nothing else, and sends nothing anywhere. The Founder calls
-    // this "retention". The try/catch is for browsers that refuse storage
-    // (some private modes); they simply get Home.
+    // entry and sends it nowhere; the only network effect is the ordinary
+    // request for gone.html. The Founder calls this "retention". The
+    // try/catch is for browsers that refuse storage (some private modes);
+    // they simply get Home.
     try {
       if (localStorage.getItem("yeeted") === "1") location.replace("gone.html");
     } catch (e) {}

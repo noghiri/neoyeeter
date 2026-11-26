@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <!--
-    Content-Security-Policy. It has to stay the first thing after the charset:
-    a policy in a meta tag doesn't cover anything that comes before it. Only
-    this site's stylesheet, Google's font CSS and font files are allowed in,
-    and only the scripts whose SHA-256 hashes are listed. Nothing may be
-    fetched, framed or submitted. After editing any inline script (yes, even
-    a comment inside one), run tools/csp_hash.py --write, or the browser will
-    refuse that script, the way the Founder refuses kibble.
+    Content-Security-Policy. Keep this as the first element after the charset:
+    a policy delivered in a meta tag does not apply to anything before it.
+    Allows this site's stylesheet, Google Fonts' CSS and font files, and only
+    the inline scripts whose SHA-256 hashes are listed. Nothing else may be
+    loaded, fetched, embedded or submitted. After editing any inline script,
+    including a comment inside one, run tools/csp_hash.py --write to update
+    the hashes.
   -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-HpmnhH3PQYgX8K8rVymk3pVb/MkrX7uQx+iu9DqNS74='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <title>Community Guidelines</title>
@@ -45,7 +45,6 @@
       <li><strong>Play by the rules:</strong> We do not allow conduct that breaks the law, undermines our systems, or circumvents enforcement actions.</li>
       <li><strong>Use the Service as intended:</strong> We do not allow automated access, scraping, or use of the Service in ways it was not designed for.</li>
     </ol>
-    <!-- Sections 1 to 5. The rules about serious harm are played completely straight. The traps live in the boring parts, where the Founder likes to wait. -->
     <h2>1. Keep people safe</h2>
     <p><strong>Physical safety:</strong> We protect people from real-world harm by prohibiting threats, incitement, and the coordination of violence.</p>
     <ul>

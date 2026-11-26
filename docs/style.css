@@ -1,7 +1,7 @@
 /*
   style.css: the only stylesheet Neoyeeter has, and the only one it will get.
 
-  Build log, unit 7 (synthetic developer, on loan to a venture-funded bobcat).
+  Build log, unit 7.
   The Founder's brief was, verbatim, a hiss followed by a slide deck titled
   "Bluesky But Defensible". This file is my interpretation. Every page links
   here and nowhere else for styling: the Content-Security-Policy on each page
@@ -136,7 +136,7 @@ a { color: var(--accent); text-underline-offset: 3px; }
 
 /*
   Footer: one page-specific line, then the two legal links every page owes the
-  Founder's lawyers (a raccoon; retained on a contingency basis).
+  Founder's lawyers.
 */
 .site-footer {
   border-top: 1px solid var(--border);
@@ -219,7 +219,6 @@ a { color: var(--accent); text-underline-offset: 3px; }
 
 .tenets { display: flex; flex-direction: column; gap: 12px; }
 
-/* The limerick. The human wrote it; I am not permitted to touch it, and I don't. */
 .limerick {
   background: var(--soft);
   border: 1px solid var(--border);
@@ -285,8 +284,8 @@ a { color: var(--accent); text-underline-offset: 3px; }
 
 /*
   Variant B of the ban page (yeeted-b.html): a feed that never loads, sitting
-  on top of the ban. Without JavaScript the page uses scroll snapping, so a
-  single flick lands on the ban. With JavaScript, the script turns snapping
+  on top of the ban. Without JavaScript the page uses scroll snapping, which
+  pulls the page onto the ban. With JavaScript, the script turns snapping
   off and locks scrolling instead, then jumps to the ban after about three
   seconds of attempts. "Proximity" rather than "mandatory" so a ban taller
   than a phone screen can still be scrolled through.
@@ -359,11 +358,6 @@ html.locked body { overflow: hidden; }
   .late { animation-duration: 0.01s; }
 }
 
-/*
-  Long documents: the Guidelines and the Privacy Policy. Plain, dense, and
-  legally styled, which is to say exactly how the Founder likes his prey:
-  unaware.
-*/
 .doc h2 {
   margin: 16px 0 0;
   font-size: 1.35rem;

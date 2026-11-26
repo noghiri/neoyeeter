@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <!--
-    Content-Security-Policy. It has to stay the first thing after the charset:
-    a policy in a meta tag doesn't cover anything that comes before it. Only
-    this site's stylesheet, Google's font CSS and font files are allowed in,
-    and only the scripts whose SHA-256 hashes are listed. Nothing may be
-    fetched, framed or submitted. After editing any inline script (yes, even
-    a comment inside one), run tools/csp_hash.py --write, or the browser will
-    refuse that script, the way the Founder refuses kibble.
+    Content-Security-Policy. Keep this as the first element after the charset:
+    a policy delivered in a meta tag does not apply to anything before it.
+    Allows this site's stylesheet, Google Fonts' CSS and font files, and only
+    the inline scripts whose SHA-256 hashes are listed. Nothing else may be
+    loaded, fetched, embedded or submitted. After editing any inline script,
+    including a comment inside one, run tools/csp_hash.py --write to update
+    the hashes.
   -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <title>Privacy Policy</title>
@@ -33,7 +33,6 @@
     <p>This Privacy Policy is issued by Neoyeeter ("Neoyeeter," "we," "us," or "our") and explains how information is handled when you visit the Neoyeeter website. By using the Neoyeeter website, you acknowledge this Privacy Policy. Please read it together with Neoyeeter's <a href="guidelines.html">Community Guidelines and Standards of Conduct</a>.</p>
     <h2>2. Scope</h2>
     <p>This Privacy Policy applies to the Neoyeeter website only. It does not apply to third-party websites or services to which the website may link, each of which is governed by its own policies, and we encourage you to review those policies separately.</p>
-    <!-- Sections 1 to 7 are the true part, and every word of them has to stay true. If the site's behaviour changes, these change with it. -->
     <h2>3. Information We Collect</h2>
     <p><strong>3.1 Information you provide to us.</strong> Neoyeeter does not offer user accounts or registration, and the website contains no forms that submit information. Controls labelled "Sign Up," "Log in," and "Create Account" are standard hyperlinks and do not transmit any information. Accordingly, we do not collect any information that you provide to us.</p>
     <p><strong>3.2 Information collected automatically.</strong> Neoyeeter does not itself collect personal information when you visit the website. We do not use cookies, web beacons, tracking pixels, analytics services, advertising technologies, or similar tools. Certain pages run scripts within your browser, for example to select a message for display or to show the current date and time. These scripts operate solely on your device and do not transmit information to Neoyeeter or to any third party.</p>
@@ -83,7 +82,6 @@
     </ol>
     <p>Reference hashes are held for personnel only, consistent with Neoyeeter's practice of holding the minimum data necessary. To date, no verification under this Section has been performed.</p>
     <p><strong>11.4 Limitations.</strong> No website or method of transmission is perfectly secure. The security of information received by GitHub and Google is governed by their own policies (Section 4).</p>
-    <!-- Act III. Still true, mostly by vacuity. The Founder dictated the signals in 12 personally, between naps. -->
     <h2>12. Do Not Track</h2>
     <p>Neoyeeter honors Do Not Track (DNT) and Global Privacy Control (GPC) signals. Because we do not track visitors, honoring them requires no action on our part.</p>
     <p>In addition, at the personal request of our founder, we honor the following signals.</p>
