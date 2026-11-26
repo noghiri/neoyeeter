@@ -283,7 +283,7 @@ a { color: var(--accent); text-underline-offset: 3px; }
 .reason { font-size: 1.15rem; color: var(--muted); }
 
 /*
-  Variant B of the ban page (yeeted-b.html): a feed that never loads, sitting
+  The ban page (yeeted.html): a feed that never loads, sitting
   on top of the ban. Without JavaScript the page uses scroll snapping, which
   pulls the page onto the ban. With JavaScript, the script turns snapping
   off and locks scrolling instead, then jumps to the ban after about three
